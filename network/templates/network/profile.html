@@ -1,0 +1,76 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    {% if warning %}
+        <p>That user doesn't exist</p>
+    {% else %}
+        <div id="profile-info">
+            <h2>
+                {{profile.username}} <!-- the profile name -->
+                {% if user.username == profile.username %}
+                    <span id="own-profile">(You)</span>
+                {% endif %}
+                <!-- follow/unfollow button -->
+                {% if user.is_authenticated and not profile.username == request.user.username %}
+                    {% if isFollowing %}
+                        <form action="/unfollowUser/{{ profile.username }}" method="POST">
+                            {% csrf_token %}
+                            <button>Unfollow</button>
+                        </form>
+                        {% else %}
+                        <form action="/followUser/{{ profile.username }}" method="POST">
+                            {% csrf_token %}
+                            <button class="follow">Follow</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+
+            </h2>
+            <!-- following/followers -->
+            <span id="following">{{ following }} Following</span>
+            <span id="followers">{{ followers }} Followers</span>
+
+        </div>
+        <!-- error message is something goes wrong when fetching the user's posts -->
+        {% if postError %}
+            <p>Unable to get {{ profile.username }}'s posts, please try again later.</p>
+        {% else %}
+
+            <!-- display the posts -->
+            {% for post in posts %}
+                <div data-post-id="{{ post.id }}" class="post">
+                    <a href="/profile/{{ post.owner }}">{{ post.owner }}</a>
+                    <p class="post-text">{{ post.text }}</p>
+                    <!-- edit post feature -->
+                    {% if user.username == post.owner %}
+                        <textarea class="edit-post">{{ post.text }}</textarea>
+                        <input class="edit-save" type="button" value="Update" onclick="saveEdit(this)" />
+                        <input type="button" class="edit-button" value="Edit Post" onclick="toggleEdit(this)" />
+                    {% endif %}
+
+                    <div class="info">
+                        <span>{{ post.time_date }}</span>
+                        <!-- like/unlike button -->
+                        <button type="submit" class="{% if post.liked %} liked {% endif %}" onclick="likeInteraction(this)" data-post-id="{{ post.id }}">{{ post.likes }}</button>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- pagination -->
+            {% if paginationRequired %}
+                <ul id="pagination">
+                    {% if previous %}
+                        <li><a href="?page={{ previousPage }}">Prev</a></li> <!-- previous button -->
+                    {% endif %}
+                    {% for page in pages %}
+                        <li class="{% if page.number == posts.number %} current {% endif %}" ><a href="?page={{ page.number }}">{{ page.number }}</a></li> <!-- individual pages button -->
+                    {% endfor %}
+                    {% if next %}
+                        <li><a href="?page={{ nextPage }}">Next</a></li> <!-- next button -->
+                    {% endif %}
+                </ul>
+            {% endif %}
+
+        {% endif %}
+    {% endif %}
+{% endblock %}

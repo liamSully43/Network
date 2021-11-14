@@ -1,0 +1,33 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+    <h2 id="following-title">Following</h2>
+    <!-- posts -->
+    {% for post in posts %}
+        <div class="post">
+            <a href="/profile/{{ post.owner }}">{{ post.owner }}</a>
+            <p>{{ post.text }}</p>
+            <div class="info">
+                <span>{{ post.time_date }}</span>
+                <!-- like/unlike button -->
+                <button type="submit" class="{% if post.liked %} liked {% endif %}" onclick="likeInteraction(this)" data-post-id="{{ post.id }}">{{ post.likes }}</button>
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- pagination -->
+    {% if paginationRequired %}
+        <ul id="pagination">
+            {% if previous %}
+                <li><a href="?page={{ previousPage }}">Prev</a></li> <!-- previous button -->
+            {% endif %}
+            {% for page in pages %}
+                <li class="{% if page.number == posts.number %} current {% endif %}" ><a href="?page={{ page.number }}">{{ page.number }}</a></li> <!-- individual pages button -->
+            {% endfor %}
+            {% if next %}
+                <li><a href="?page={{ nextPage }}">Next</a></li> <!-- next button -->
+            {% endif %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

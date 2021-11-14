@@ -1,0 +1,306 @@
+:root {
+    --primary: #096;
+    --primary-hover: #007e54;
+    --text: #212121;
+    --text-2: #f0f0f0;
+    --border: #c9c9c9;
+}
+
+* {
+    font-family: Arial, sans-serif;
+    color: var(--text);
+}
+
+.hide {
+    display: none;
+}
+
+.body {
+    margin: auto;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+#new-post {
+    padding: 30px;
+    border: solid 1px var(--border);
+    border-radius: 5px;
+}
+
+#new-post * {
+    display: block;
+}
+
+#new-post h1 {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+#new-post textarea {
+    resize: vertical;
+    width: 100%;
+    min-height: 70px;
+    border: solid 1px var(--border);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    padding: 7px;
+    outline: none;
+}
+
+#new-post textarea:focus {
+    border-color: var(--primary);
+}
+
+#new-post input {
+    background-color: var(--primary);
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-2);
+    cursor: pointer;
+}
+
+#new-post input:hover {
+    background-color: var(--primary-hover);
+}
+
+.post {
+    width: 100%;
+    margin-top: 20px;
+    border: solid 1px var(--border);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.post a { /* post title */
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    text-decoration: none !important;
+}
+
+.post .you-flag {
+    padding: 0px 4px;
+    background-color: lightgrey;
+    border: solid 1px grey;
+    border-radius: 5px;
+    color: grey;
+    font-size: 10px;
+    margin-left: 10px;
+    position: relative;
+    top: -2px;
+}
+
+.post a:hover {
+    color: var(--primary);
+}
+
+.post p { /* post text */
+    font-size: 14px;
+    color: var(--text);
+}
+
+.post div { /* post info container */
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: solid 1px #c5c5c5;
+    width: 100%;
+}
+
+.post span { /* date/time */
+    font-size: 12px;
+    color: var(--border);
+    display: inline;
+}
+
+.post form { /* post likes form */
+    display: inline;
+}
+
+.post button { /* likes */
+    background-color: transparent;
+    margin-left: 10px;
+    font-size: 12px;
+    border: solid 2px var(--border);
+    border-radius: 50%;
+    padding: 0px 5px;
+    color: var(--border);
+    outline: none;
+}
+
+.post button:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.post button.liked {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+}
+
+.post button.liked:hover {
+    color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+#own-profile {
+    font-size: 20px;
+    font-weight: 100;
+    color: var(--text);
+    position: relative;
+    top: -3px;
+}
+
+#profile-info h2 {
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+#profile-info span {
+    color: grey;
+    margin-right: 10px;
+}
+
+#profile-info form {
+    display: inline-block;
+    height: 30px;
+}
+
+#profile-info button {
+    background-color: transparent;
+    position: relative;
+    top: -5px;
+    margin-left: 20px;
+    padding: 5px 10px;
+    border: solid 1px var(--primary);
+    border-radius: 5px;
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#profile-info button:hover {
+    background-color: var(--primary);
+    color: var(--text-2);
+}
+
+#profile-info button.follow {
+    background-color: var(--primary) !important;
+    color: var(--text-2) !important;
+}
+
+#profile-info button.follow:hover {
+    background-color: var(--primary-hover) !important;
+}
+
+.edit-button {
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    padding: 0px;
+    color: grey;
+}
+
+.edit-button:hover {
+    color: var(--primary);
+}
+
+.edit-post, .edit-save {
+    display: none;
+}
+
+.active .edit-post, .active .edit-save {
+    display: block !important;
+}
+
+.edit-post {
+    width: 100%;
+    resize: vertical;
+    border-color: var(--border);
+    border-radius: 5px;
+    padding-left: 5px;
+    color: var(--text);
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.edit-post:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.edit-save {
+    background-color: var(--primary);
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    color: var(--text-2);
+    cursor: pointer;
+}
+
+.edit-save:hover {
+    background-color: var(--primary-hover);
+}
+
+#pagination {
+    width: 100%;
+    margin: 0px;
+    margin-top: 30px;
+    padding: 0px;
+    display: flex;
+}
+
+#pagination li {
+    list-style: none;
+    display: inline-block;
+    width: 70px;
+    background-color: var(--text-2);
+    color: var(--text);
+    border: none;
+    border-right: solid 1px var(--border);
+    border-left: solid 1px var(--border);
+    text-align: center;
+    margin: 0px;
+    padding: 5px 0px;
+    cursor: pointer;
+}
+
+#pagination li:hover {
+    background-color: var(--primary);
+    border-left-color: var(--primary);
+    border-right-color: var(--primary);
+    color: var(--text-2);
+}
+
+.current, .current a {
+    background-color: var(--primary-hover) !important;
+    border-left-color: var(--primary-hover) !important;
+    border-right-color: var(--primary-hover) !important;
+    color: var(--text-2) !important;
+    cursor: default !important;
+}
+
+#pagination li:first-of-type {
+    border-radius: 5px 0px 0px 5px;
+    border-left: none;
+}
+
+#pagination li:last-of-type  {
+    border-radius: 0px 5px 5px 0px;
+    border-right: none;
+}
+
+#pagination li a {
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+}
+
+#following-title {
+    font-weight: 600;
+}
